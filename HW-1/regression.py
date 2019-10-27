@@ -7,13 +7,16 @@
 # [] Created By : Parham Alvani <parham.alvani@gmail.com>
 # =======================================
 import numpy as np
+from typing import List, Dict
 
-def regression(data, n, alpha, steps, lmb):
+def regression(data: Dict[float, float], n: int, alpha: float, steps: int, lmb: float) -> List[int]:
     '''
+    single variable regression based on gradient descent
     x, y are arrays of input data
     alpha is a learning rate
     n is a degree of regression
     lmb is a regularization parameter
+    steps is a number of steps in the algorithm
     '''
     teta = [1 for _ in range(n)]
     for _ in range(steps):

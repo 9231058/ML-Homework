@@ -9,7 +9,7 @@
 import numpy as np
 from typing import List, Dict
 
-def regression(data: Dict[float, float], n: int, alpha: float, steps: int, lmb: float) -> List[int]:
+def regression(data: Dict[float, float], n: int, alpha: float, steps: int, lmb: float) -> List[float]:
     '''
     single variable regression based on gradient descent
     x, y are arrays of input data
@@ -18,7 +18,7 @@ def regression(data: Dict[float, float], n: int, alpha: float, steps: int, lmb: 
     lmb is a regularization parameter
     steps is a number of steps in the algorithm
     '''
-    teta = [1 for _ in range(n)]
+    teta: List[float] = [1 for _ in range(n)]
     for _ in range(steps):
         # calculate MSE
         mse = 0
@@ -28,7 +28,7 @@ def regression(data: Dict[float, float], n: int, alpha: float, steps: int, lmb: 
         print(mse)
 
         # gradient descent
-        new_teta = [0 for _ in range(n)]
+        new_teta: List[float] = [0 for _ in range(n)]
         for j in range(n):
             new_teta[j] = teta[j]
             new_teta[j] -= 2 * alpha * lmb * teta[j]
@@ -40,7 +40,7 @@ def regression(data: Dict[float, float], n: int, alpha: float, steps: int, lmb: 
 
 
 if __name__ == '__main__':
-    data = {
+    data: Dict[float, float] = {
         1: 1,
         2: 4,
         3: 9,

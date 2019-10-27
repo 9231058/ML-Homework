@@ -122,6 +122,8 @@ dmypy.json
 [Ll]ib64
 [Ll]ocal
 [Ss]cripts
+[Ss]hare
+[Ee]tc
 pyvenv.cfg
 .env
 .venv

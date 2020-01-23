@@ -14,13 +14,14 @@ class KMeans:
 
     def Si(self, X, centroid):
         '''
-        Calculate the Davies–Bouldin index (S_i) for given cluster
+        Calculate the Davies–Bouldin index (S_i)s for given cluster
         X: np.ndarray, shape = [n_examples, n_features]
         '''
         return np.mean(np.linalg.norm(X - centroid, axis=1))
 
     def centroid(self, X):
         '''
+        Calculate centroid of given cluster
         X: np.ndarray, shape = [n_examples, n_features]
         '''
         return np.mean(X, axis=0)
@@ -41,6 +42,7 @@ class KMeans:
 
     def fit(self, X):
         '''
+        Predict labels for given unlabeled dataset
         X: np.ndarray, shape = [n_examples, n_features]
         '''
         rgen = np.random.RandomState(self.random_state)

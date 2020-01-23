@@ -10,6 +10,7 @@ class KMeans:
         self._labels = []
         self._Si = []
         self.dbi = []
+        self.sse = []
 
     def Si(self, X, centroid):
         '''
@@ -31,6 +32,13 @@ class KMeans:
         '''
         return np.linalg.norm(self._centroids - x, axis=1).argmin()
 
+    def ssei(self, X, centroid):
+        '''
+        Calculate SSE (sum of squared errors) for given cluster
+        X: np.ndarray, shape = [n_examples, n_features]
+        '''
+        return np.sum(np.linalg.norm(X - centroid, axis=1) ** 2)
+
     def fit(self, X):
         '''
         X: np.ndarray, shape = [n_examples, n_features]
@@ -45,9 +53,12 @@ class KMeans:
             for idx, x in enumerate(X):
                 self._labels[idx] = self.distance(x)
 
+            s = 0 # aggregation variable for sse calculation in each step
             for cl in range(self.k):
                 self._centroids[cl] = self.centroid(X[self._labels == cl])
                 self._Si[cl] = self.Si(X[self._labels == cl], self._centroids[cl])
+                s += self.ssei(X[self._labels == cl], self._centroids[cl])
+            self.sse.append(s)
 
             for cl1 in range(self.k):
                 for cl2 in range(self.k):
